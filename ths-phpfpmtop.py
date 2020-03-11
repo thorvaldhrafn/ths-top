@@ -27,6 +27,7 @@ def main():
 # for key in proc_mem_list.keys():
 #     print(key, proc_mem_list[key]['rss'])
 
+FullPMemInfo = FullPMemInfo()
+
 if __name__ == "__main__":
-    FullPMemInfo = FullPMemInfo()
     sys.exit(main())
