@@ -6,6 +6,8 @@ import sys
 from .PMemInfo import FullPMemInfo
 
 
+
+
 def main():
     for prinfo in psutil.process_iter():
         try:
@@ -19,6 +21,7 @@ def main():
                 FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
+    line_data = str()
     print(FullPMemInfo.proc_mem_list)
 #
 # for key in proc_mem_list.keys():
