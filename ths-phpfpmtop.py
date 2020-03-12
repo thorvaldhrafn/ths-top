@@ -19,10 +19,10 @@ def main():
                 FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
-    mem_summ_head = str("Pool name\t\t\tVMS\t\t\tRSS")
+    mem_summ_head = str("Pool name\t\t\t\tVMS\t\t\tRSS")
     print(mem_summ_head)
     for pool in FullPMemInfo.proc_mem_list.keys():
-        line_data = str(pool + "\t\t\t" + str(FullPMemInfo.proc_mem_list[pool]['vms']) + "\t\t\t" + str(FullPMemInfo.proc_mem_list[pool]['rss']))
+        line_data = str(pool + "\t\t\t\t" + str(FullPMemInfo.proc_mem_list[pool]['vms']) + "\t\t\t" + str(FullPMemInfo.proc_mem_list[pool]['rss']))
         print(line_data)
 
 if __name__ == "__main__":
