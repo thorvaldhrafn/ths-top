@@ -8,7 +8,7 @@ from PMemInfo import FullPMemInfo
 
 def print_l_poolmem(proc_mem_list):
     leng_p = len(max(proc_mem_list.keys()))
-    leng_p += 5
+    leng_p += 10
     print(str("{:"+str(leng_p)+"}" "{:>15s} {:>10s}").format("Pool name", "VMS", "RSS"))
     for pool in proc_mem_list.keys():
         print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
