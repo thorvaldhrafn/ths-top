@@ -7,7 +7,7 @@ from PMemInfo import FullPMemInfo
 
 
 def print_l_poolmem(proc_mem_list):
-    leng_p = len(max(proc_mem_list.keys()))
+    leng_p = len(max(proc_mem_list.keys(), key=len))
     print(max(proc_mem_list.keys()))
     print(leng_p)
     leng_p += 10
