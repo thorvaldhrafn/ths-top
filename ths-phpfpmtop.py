@@ -23,7 +23,7 @@ def main():
     # print("%-20s %-15s %s" % ("Pool name", "VMS", "RSS"))
     for pool in FullPMemInfo.proc_mem_list.keys():
         # print("%-20s %-15d %d" % (pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
-        print(str("{:20s} {:>15d} {>d}").format(pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
+        print(str("{:20s} {:>15d} {:>d}").format(pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
 
 if __name__ == "__main__":
     FullPMemInfo = FullPMemInfo()
