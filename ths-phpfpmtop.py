@@ -19,10 +19,14 @@ def main():
                 FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
-    print(str("{:6s} {:6s} {:6s}").format("Pool name", "VMS", "RSS"))
+    # print(str("{:6s} {:6s} {:6s}").format("Pool name", "VMS", "RSS"))
+    print("%-14s %-15s %s" % ("Pool name", "VMS", "RSS"))
     for pool in FullPMemInfo.proc_mem_list.keys():
-        print(str("{:6s} {:6d} {:6d}").format(pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
+        print("%-14s %-15d %d" % (pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
+        # print(str("{:6s} {:6d} {:6d}").format(pool, FullPMemInfo.proc_mem_list[pool]['vms'], FullPMemInfo.proc_mem_list[pool]['rss']))
 
 if __name__ == "__main__":
     FullPMemInfo = FullPMemInfo()
     sys.exit(main())
+
+
