@@ -28,6 +28,7 @@ def main():
                 FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
+    print(FullPMemInfo.proc_mem_list)
     print_l_poolmem(FullPMemInfo.proc_mem_list)
 
 if __name__ == "__main__":
