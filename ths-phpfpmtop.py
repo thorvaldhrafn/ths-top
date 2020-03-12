@@ -6,7 +6,7 @@ import sys
 from .PMemInfo import FullPMemInfo
 
 
-def main():
+def zzzz():
     for prinfo in psutil.process_iter():
         try:
             cmd_first = prinfo.cmdline()[0]
@@ -26,7 +26,7 @@ def main():
 #     print(key, proc_mem_list[key]['rss'])
 
 FullPMemInfo = FullPMemInfo()
-main()
+zzzz()
 #
 # if __name__ == "__main__":
 #     sys.exit(main())
