@@ -3,7 +3,7 @@ import psutil
 import re
 import sys
 
-from .PMemInfo import FullPMemInfo
+from PMemInfo import FullPMemInfo
 
 
 # def zzzz():
