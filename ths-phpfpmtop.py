@@ -18,9 +18,9 @@ def print_l_poolmem(proc_mem_list):
 def main():
     for prinfo in psutil.process_iter():
         try:
-            print(prinfo.cmdline())
             cmd_list = prinfo.cmdline()
             cmd_line = ' '.join(map(str, cmd_list))
+            print(cmd_line)
             if re.match('.*php-fpm: pool .*', cmd_line):
                 pool = cmd_list.split()[-1]
                 p_mem_data = prinfo.memory_info()
