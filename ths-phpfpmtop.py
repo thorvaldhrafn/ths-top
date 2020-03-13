@@ -20,7 +20,7 @@ def main():
         try:
             cmd_lst = prinfo.cmdline()
             cmd_str = ' '.join(map(str, cmd_lst))
-            print(cmd_lst)
+            # print(cmd_lst)
             if re.match('.*php-fpm: pool .*', cmd_str):
                 print(cmd_lst)
                 print(cmd_str)
