@@ -18,15 +18,15 @@ def print_l_poolmem(proc_mem_list):
 def main():
     for prinfo in psutil.process_iter():
         try:
-            cmd_first = prinfo.cmdline()[0]
+            cmd_first = prinfo.cmdline()
             print(cmd_first)
-            if re.match('.*php-fpm: pool .*', cmd_first):
-                pool = cmd_first.split()[-1]
-                p_mem_data = prinfo.memory_info()
-                p_mem_rss = p_mem_data.rss
-                p_mem_vms = p_mem_data.vms
-                FullPMemInfo.p_mem_rss_full(pool, p_mem_rss)
-                FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
+            # if re.match('.*php-fpm: pool .*', cmd_first):
+            #     pool = cmd_first.split()[-1]
+            #     p_mem_data = prinfo.memory_info()
+            #     p_mem_rss = p_mem_data.rss
+            #     p_mem_vms = p_mem_data.vms
+            #     FullPMemInfo.p_mem_rss_full(pool, p_mem_rss)
+            #     FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
     print(FullPMemInfo.proc_mem_list)
