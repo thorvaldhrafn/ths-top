@@ -22,7 +22,7 @@ def main():
             cmd_str = ' '.join(map(str, cmd_lst))
             # print(cmd_lst)
             if re.match('.*php-fpm: pool .*', cmd_str):
-                print(cmd_lst)
+                # print(cmd_lst)
                 print(cmd_str)
             #     pool = cmd_first.split()[-1]
             #     p_mem_data = prinfo.memory_info()
