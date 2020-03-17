@@ -13,6 +13,7 @@ def bytes_conv(m_data, t_data):
         pass
     if t_data == "mbytes":
         m_data = m_data / 1024
+        print(type(m_data))
     if t_data == "gbytes":
         m_data = m_data / 1024 / 1024
     return m_data
