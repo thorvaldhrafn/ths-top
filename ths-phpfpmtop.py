@@ -12,7 +12,8 @@ def print_l_poolmem(proc_mem_list):
     leng_p += 6
     print(str("{:"+str(leng_p)+"}" "{:>15s} {:>10s}").format("Pool name", "VMS", "RSS"))
     sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-    print(sproc_mem_list)
+    for i in sproc_mem_list:
+        print(i)
     # for pool in sproc_mem_list.keys():
     #     print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
     #                                                              proc_mem_list[pool]['rss']))
