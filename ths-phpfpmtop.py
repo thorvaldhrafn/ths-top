@@ -7,14 +7,18 @@ from collections import OrderedDict
 from PMemInfo import FullPMemInfo
 
 
-def print_l_poolmem(proc_mem_list):
+def print_l_poolmem(proc_mem_list, srt="rss"):
     leng_p = len(max(proc_mem_list.keys(), key=len))
     leng_p += 6
-    print(str("{:"+str(leng_p)+"}" "{:>15s} {:>10s}").format("Pool name", "VMS", "RSS"))
-    sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-    for pool in sproc_mem_list:
-        print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
-                                                                 proc_mem_list[pool]['rss']))
+    if srt == "name":
+        sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
+        for pool in sproc_mem_list:
+            print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
+                                                                     proc_mem_list[pool]['rss']))
+    if srt == "rss":
+        for pool in sorted(proc_mem_list, key=proc_mem_list.get("rss"), reverse=True):
+            print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
+                                                                     proc_mem_list[pool]['rss']))
     # for pool in sproc_mem_list.keys():
     #     print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
     #                                                              proc_mem_list[pool]['rss']))
