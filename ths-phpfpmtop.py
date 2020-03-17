@@ -16,10 +16,11 @@ def print_l_poolmem(proc_mem_list, srt="rss"):
             print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
                                                                      proc_mem_list[pool]['rss']))
     if srt == "rss":
-        sproc_mem_list = OrderedDict(sorted(proc_mem_list, key=proc_mem_list.get("rss"), reverse=True))
-        for pool in sproc_mem_list:
-            print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
-                                                                     proc_mem_list[pool]['rss']))
+        print(sorted(proc_mem_list, key=proc_mem_list.get("rss"), reverse=True))
+        # sproc_mem_list = OrderedDict(sorted(proc_mem_list, key=proc_mem_list.get("rss"), reverse=True))
+        # for pool in sproc_mem_list:
+        #     print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
+        #                                                              proc_mem_list[pool]['rss']))
     # for pool in sproc_mem_list.keys():
     #     print(str("{:"+str(leng_p)+"}" "{:>15d} {:>10d}").format(pool, proc_mem_list[pool]['vms'],
     #                                                              proc_mem_list[pool]['rss']))
