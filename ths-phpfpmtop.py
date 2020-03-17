@@ -10,13 +10,14 @@ from PMemInfo import FullPMemInfo
 
 def bytes_conv(m_data, t_data):
     if t_data == "bytes":
-        m_data = float(m_data)
+        pass
     if t_data == "kbytes":
         m_data = m_data / 1024
     if t_data == "mbytes":
         m_data = m_data / 1024 / 1024
     if t_data == "gbytes":
         m_data = m_data / 1024 / 1024 / 1024
+    m_data = float('{:.3f}'.format(m_data))
     return m_data
 
 
