@@ -28,21 +28,21 @@ def print_l_poolmem(proc_mem_list, srt="rss", t_data="mbytes"):
     if srt == "name":
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
         for pool in sproc_mem_list:
-            print(str("{:" + str(leng_p) + "}" "{:>15s} {:>10s}").format(pool,
+            print(str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format(pool,
                                                                          bytes_conv(proc_mem_list[pool]['vms'], t_data),
                                                                          bytes_conv(proc_mem_list[pool]['rss'],
                                                                                     t_data)))
     if srt == "rss":
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
         for pool in sproc_mem_list:
-            print(str("{:" + str(leng_p) + "}" "{:>15s} {:>10s}").format(pool, bytes_conv(proc_mem_list[pool]['vms'],
+            print(str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format(pool, bytes_conv(proc_mem_list[pool]['vms'],
                                                                                           t_data),
                                                                          bytes_conv(proc_mem_list[pool]['rss'],
                                                                                     t_data)))
     if srt == "vms":
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
         for pool in sproc_mem_list:
-            print(str("{:" + str(leng_p) + "}" "{:>15s} {:>10s}").format(pool, bytes_conv(proc_mem_list[pool]['vms'],
+            print(str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format(pool, bytes_conv(proc_mem_list[pool]['vms'],
                                                                                           t_data),
                                                                          bytes_conv(proc_mem_list[pool]['rss'],
                                                                                     t_data)))
