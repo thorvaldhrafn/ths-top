@@ -11,6 +11,7 @@ from PMemInfo import FullPMemInfo
 def print_l_poolmem(proc_mem_list, srt="rss"):
     leng_p = len(max(proc_mem_list.keys(), key=len))
     leng_p += 6
+    print(str("{:" + str(leng_p) + "}" "{:>15s} {:>10s}").format("Pool name", "VMS", "RSS"))
     if srt == "name":
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
         for pool in sproc_mem_list:
