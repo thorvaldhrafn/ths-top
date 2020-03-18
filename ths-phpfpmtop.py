@@ -44,6 +44,7 @@ def showscr(proc_mem_list, srt="rss", t_data="mbytes"):
         for pool in sproc_mem_list:
             stdscr.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
             l_num += 1
+        stdscr.refresh()
 
         while True:
             ch = stdscr.getch()
