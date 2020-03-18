@@ -39,7 +39,6 @@ def showscr(srt="rss", t_data="mbytes"):
         leng_p = len(max(proc_mem_list.keys(), key=len))
         leng_p += 6
         proc_mem_list = p_data()
-        print(proc_mem_list)
         stdscr.addstr(1, 1, str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format("Pool name", "VMS", "RSS\n\n"), curses.A_BOLD)
         l_num = 2
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
@@ -80,6 +79,7 @@ def p_data():
 
 
 def main():
+    print(p_data())
     showscr("rss", "mbytes")
 
 
