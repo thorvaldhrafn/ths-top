@@ -44,6 +44,7 @@ def showscr(srt="rss", t_data="mbytes"):
         for pool in sproc_mem_list:
             stdscr.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
             l_num += 1
+        stdscr.refresh()
 
         while True:
             ch = stdscr.getch()
@@ -76,7 +77,6 @@ def print_l_poolmem(proc_mem_list, srt="rss", t_data="mbytes"):
             print(prnt_line(leng_p, pool, proc_mem_list, t_data))
 
 
-
 def p_data():
     for prinfo in psutil.process_iter():
         try:
@@ -95,22 +95,7 @@ def p_data():
     return FullPMemInfo.proc_mem_list
 
 
-
 def main():
-    # for prinfo in psutil.process_iter():
-    #     try:
-    #         with prinfo.oneshot():
-    #             cmd_lst = prinfo.cmdline()
-    #             cmd_str = ' '.join(map(str, cmd_lst))
-    #             if re.match('.*php-fpm: pool .*', cmd_str):
-    #                 pool = cmd_str.split()[-1]
-    #                 p_mem_data = prinfo.memory_info()
-    #                 p_mem_rss = p_mem_data.rss
-    #                 p_mem_vms = p_mem_data.vms
-    #                 FullPMemInfo.p_mem_rss_full(pool, p_mem_rss)
-    #                 FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
-    #     except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
-    #         pass
     showscr("rss", "mbytes")
 
 
