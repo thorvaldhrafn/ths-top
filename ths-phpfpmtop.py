@@ -35,7 +35,7 @@ def showscr(proc_mem_list, srt="rss", t_data="mbytes"):
         curses.noecho()
         curses.cbreak()
         stdscr.keypad(1)
-
+        proc_mem_list = p_data()
         leng_p = len(max(proc_mem_list.keys(), key=len))
         leng_p += 6
         stdscr.addstr(1, 1, str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format("Pool name", "VMS", "RSS\n\n"), curses.A_BOLD)
