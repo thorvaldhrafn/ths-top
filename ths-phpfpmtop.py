@@ -1,4 +1,5 @@
-# import curses
+import curses
+import traceback
 import psutil
 import re
 import sys
@@ -26,6 +27,35 @@ def prnt_line(leng_p, pool, proc_mem_list, t_data):
                                                                     bytes_conv(proc_mem_list[pool]['vms'], t_data),
                                                                     bytes_conv(proc_mem_list[pool]['rss'], t_data))
     return p_line
+
+
+def showscr(proc_mem_list, srt="rss", t_data="mbytes"):
+    try:
+        stdscr = curses.initscr()
+        curses.noecho()
+        curses.cbreak()
+        stdscr.keypad(1)
+        stdscr.border(0)
+
+        leng_p = len(max(proc_mem_list.keys(), key=len))
+        leng_p += 6
+        stdscr.addstr(str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format("Pool name", "VMS", "RSS"), curses.A_BOLD)
+        stdscr.addstr(6, 5, 'Press q to close this screen', curses.A_NORMAL)
+        sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
+        for pool in sproc_mem_list:
+            stdscr.addstr(prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+
+        while True:
+            ch = stdscr.getch()
+            if ch == ord('q'):
+                break
+    except:
+        traceback.print_exc()
+    finally:
+        stdscr.keypad(0)
+        curses.echo()
+        curses.nocbreak()
+        curses.endwin()
 
 
 def print_l_poolmem(proc_mem_list, srt="rss", t_data="mbytes"):
@@ -61,7 +91,8 @@ def main():
                     FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
-    print_l_poolmem(FullPMemInfo.proc_mem_list, "rss", "mbytes")
+    # print_l_poolmem(FullPMemInfo.proc_mem_list, "rss", "mbytes")
+    showscr(FullPMemInfo.proc_mem_list, "rss", "mbytes")
 
 
 if __name__ == "__main__":
