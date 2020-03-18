@@ -76,7 +76,7 @@ def print_l_poolmem(proc_mem_list, srt="rss", t_data="mbytes"):
             print(prnt_line(leng_p, pool, proc_mem_list, t_data))
 
 
-def main():
+def p_data():
     for prinfo in psutil.process_iter():
         try:
             with prinfo.oneshot():
@@ -91,8 +91,11 @@ def main():
                     FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
-    # print_l_poolmem(FullPMemInfo.proc_mem_list, "rss", "mbytes")
-    showscr(FullPMemInfo.proc_mem_list, "rss", "mbytes")
+    return FullPMemInfo.proc_mem_list
+
+
+def main():
+    showscr(p_data(), "rss", "mbytes")
 
 
 if __name__ == "__main__":
