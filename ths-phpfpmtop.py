@@ -55,6 +55,7 @@ def main():
             cmd_str = ' '.join(map(str, cmd_lst))
             if re.match('.*php-fpm: pool .*', cmd_str):
                 pool = cmd_str.split()[-1]
+                print(prinfo)
                 p_mem_data = prinfo.memory_info()
                 p_mem_rss = p_mem_data.rss
                 p_mem_vms = p_mem_data.vms
