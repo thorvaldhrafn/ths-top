@@ -31,3 +31,4 @@ finally:
     curses.echo()
     curses.nocbreak()
     curses.endwin()
+
