@@ -43,7 +43,7 @@ def showscr(proc_mem_list, srt="rss", t_data="mbytes"):
         l_num = 2
         sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
         for pool in sproc_mem_list:
-            stdscr.addstr(1, l_num, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+            stdscr.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
             l_num += 1
 
         while True:
