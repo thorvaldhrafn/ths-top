@@ -35,7 +35,6 @@ def showscr(proc_mem_list, srt="rss", t_data="mbytes"):
         curses.noecho()
         curses.cbreak()
         stdscr.keypad(1)
-        stdscr.border(0)
 
         leng_p = len(max(proc_mem_list.keys(), key=len))
         leng_p += 6
