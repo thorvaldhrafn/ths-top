@@ -23,10 +23,9 @@ def bytes_conv(m_data, t_data):
 
 
 def prnt_line(leng_p, pool, proc_mem_list, t_data):
-    p_line = str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format(pool,
-                                                                    bytes_conv(proc_mem_list[pool]['vms'], t_data),
-                                                                    bytes_conv(proc_mem_list[pool]['rss'], t_data))
-    return str(p_line + "\n")
+    tmplt = str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}" "\n")
+    p_line = str(tmplt).format(pool, bytes_conv(proc_mem_list[pool]['vms'], t_data), bytes_conv(proc_mem_list[pool]['rss'], t_data))
+    return str(p_line)
 
 
 def showscr(srt="rss", t_data="mbytes"):
