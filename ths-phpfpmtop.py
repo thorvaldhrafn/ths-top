@@ -53,7 +53,7 @@ def showscr(srt="rss", t_data="mbytes"):
     except:
         traceback.print_exc()
     finally:
-        stdscr.keypad(0)
+        stdscr.keypad(False)
         curses.echo()
         curses.nocbreak()
         curses.endwin()
