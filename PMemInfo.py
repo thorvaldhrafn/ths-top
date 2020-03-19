@@ -2,6 +2,9 @@ class FullPMemInfo(object):
     def __init__(self):
         self.proc_mem_list = {}
 
+    def clean(self):
+        self.proc_mem_list.clear()
+
     def p_mem_rss_full(self, pname, p_mem_rss):
         try:
             p_mem_rss_old = self.proc_mem_list[pname]['rss']
