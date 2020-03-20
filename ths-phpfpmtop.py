@@ -48,7 +48,6 @@ def showscr(srt="rss", t_data="mbytes"):
             ch = stdscr.getch()
             if ch == ord('q'):
                 break
-            stdscr.clrtoeol()
             stdscr.refresh()
     except:
         traceback.print_exc()
@@ -95,10 +94,13 @@ def p_data():
     return FullPMemInfo.proc_mem_list
 
 
-def main():
-    showscr("rss", "mbytes")
+# def main():
+#     showscr("rss", "mbytes")
+#
+#
+# if __name__ == "__main__":
+#     FullPMemInfo = FullPMemInfo()
+#     sys.exit(main())
 
-
-if __name__ == "__main__":
-    FullPMemInfo = FullPMemInfo()
-    sys.exit(main())
+FullPMemInfo = FullPMemInfo()
+showscr("rss", "mbytes")
