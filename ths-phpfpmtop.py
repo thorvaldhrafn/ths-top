@@ -95,4 +95,5 @@ atexit.register(exandclear)
 curses.endwin()
 
 FullPMemInfo = FullPMemInfo()
-showscr("rss", "mbytes")
+while True:
+    showscr("rss", "mbytes")
