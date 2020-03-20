@@ -58,9 +58,9 @@ def showscr(srt="rss", t_data="mbytes"):
                 l_num += 1
             scr_top.refresh()
             time.sleep(1)
-            ch = scr_top.getch()
-            if ch == ord('q'):
-                break
+            # ch = scr_top.getch()
+            # if ch == ord('q'):
+            #     break
     except:
         traceback.print_exc()
 
