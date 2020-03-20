@@ -33,7 +33,7 @@ def showscr(srt="rss", t_data="mbytes"):
         scr_top = curses.initscr()
         curses.noecho()
         curses.cbreak()
-        scr_top.curs_set(False)
+        curses.curs_set(False)
         scr_top.keypad(True)
         while True:
             FullPMemInfo.clean()
@@ -53,7 +53,7 @@ def showscr(srt="rss", t_data="mbytes"):
     except:
         traceback.print_exc()
     finally:
-        scr_top.curs_set(True)
+        curses.curs_set(True)
         scr_top.keypad(False)
         curses.echo()
         curses.nocbreak()
