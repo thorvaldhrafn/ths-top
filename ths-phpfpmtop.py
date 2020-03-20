@@ -48,6 +48,7 @@ def showscr(srt="rss", t_data="mbytes"):
             ch = stdscr.getch()
             if ch == ord('q'):
                 break
+            stdscr.clrtoeol()
             stdscr.refresh()
     except:
         traceback.print_exc()
