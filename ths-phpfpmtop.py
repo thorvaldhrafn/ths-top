@@ -2,11 +2,20 @@ import curses
 import traceback
 import psutil
 import re
+import atexit
 import sys
 
 from collections import OrderedDict
 from operator import getitem
 from PMemInfo import FullPMemInfo
+
+
+def exandclear():
+    scr_top.keypad(False)
+    curses.curs_set(True)
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
 
 
 def bytes_conv(m_data, t_data):
@@ -52,30 +61,6 @@ def showscr(srt="rss", t_data="mbytes"):
                 break
     except:
         traceback.print_exc()
-    finally:
-        curses.curs_set(True)
-        scr_top.keypad(False)
-        curses.echo()
-        curses.nocbreak()
-        curses.endwin()
-
-
-def print_l_poolmem(proc_mem_list, srt="rss", t_data="mbytes"):
-    leng_p = len(max(proc_mem_list.keys(), key=len))
-    leng_p += 6
-    print(str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format("Pool name", "VMS", "RSS"))
-    if srt == "name":
-        sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-        for pool in sproc_mem_list:
-            print(prnt_line(leng_p, pool, proc_mem_list, t_data))
-    if srt == "rss":
-        sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
-        for pool in sproc_mem_list:
-            print(prnt_line(leng_p, pool, proc_mem_list, t_data))
-    if srt == "vms":
-        sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
-        for pool in sproc_mem_list:
-            print(prnt_line(leng_p, pool, proc_mem_list, t_data))
 
 
 def p_data():
@@ -103,6 +88,11 @@ def p_data():
 # if __name__ == "__main__":
 #     FullPMemInfo = FullPMemInfo()
 #     sys.exit(main())
+
+
+scr_top = curses.initscr()
+atexit.register(exandclear)
+curses.endwin()
 
 FullPMemInfo = FullPMemInfo()
 showscr("rss", "mbytes")
