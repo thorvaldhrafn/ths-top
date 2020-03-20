@@ -56,7 +56,7 @@ def showscr(srt="rss", t_data="mbytes"):
             for pool in sproc_mem_list:
                 scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                 l_num += 1
-            time.sleep(1)
+            time.sleep(5)
             scr_top.refresh()
             # ch = scr_top.getch()
             # if ch == ord('q'):
