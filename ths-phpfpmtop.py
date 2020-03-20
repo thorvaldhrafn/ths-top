@@ -30,11 +30,11 @@ def prnt_line(leng_p, pool, proc_mem_list, t_data):
 
 def showscr(srt="rss", t_data="mbytes"):
     try:
+        stdscr = curses.initscr()
+        curses.noecho()
+        curses.cbreak()
+        stdscr.keypad(True)
         while True:
-            stdscr = curses.initscr()
-            curses.noecho()
-            curses.cbreak()
-            stdscr.keypad(True)
             FullPMemInfo.clean()
             proc_mem_list = p_data()
             leng_p = len(max(proc_mem_list.keys(), key=len))
