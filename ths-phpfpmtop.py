@@ -4,6 +4,7 @@ import psutil
 import re
 import atexit
 import sys
+import time
 
 from collections import OrderedDict
 from operator import getitem
@@ -56,6 +57,7 @@ def showscr(srt="rss", t_data="mbytes"):
                 scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                 l_num += 1
             scr_top.refresh()
+            time.sleep(1)
             ch = scr_top.getch()
             if ch == ord('q'):
                 break
