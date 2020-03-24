@@ -53,14 +53,33 @@ def showscr(srt="rss", t_data="mbytes"):
             leng_p += 6
             scr_top.addstr(0, 1, str("{:" + str(leng_p) + "}" "{:<15s} {:<10s}").format("Pool name", "VMS", "RSS"), curses.A_REVERSE)
             l_num = 1
-            sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
-            for pool in sproc_mem_list:
-                scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                l_num += 1
+            if srt == "name":
+                sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
+            if srt == "rss":
+                sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
+            if srt == "vms":
+                sproc_mem_list = OrderedDict(
+                    sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
             ch = scr_top.getch()
+            if ch == ord('n'):
+                srt = "name"
+            if ch == ord('r'):
+                srt = "rss"
+            if ch == ord('v'):
+                srt = "vms"
             if ch == ord('q'):
                 break
             else:
+                time.sleep(1)
                 scr_top.refresh()
     except:
         traceback.print_exc()
