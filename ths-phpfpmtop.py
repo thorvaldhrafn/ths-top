@@ -85,18 +85,19 @@ def p_data():
     return FullPMemInfo.proc_mem_list
 
 
-# def main():
-#     showscr("rss", "mbytes")
+def main():
+    showscr("rss", "mbytes")
+
+
+if __name__ == "__main__":
+    scr_top = curses.initscr()
+    atexit.register(exandclear)
+    curses.endwin()
+    FullPMemInfo = FullPMemInfo()
+    sys.exit(main())
 #
 #
-# if __name__ == "__main__":
-#     FullPMemInfo = FullPMemInfo()
-#     sys.exit(main())
-
-
-scr_top = curses.initscr()
-atexit.register(exandclear)
-curses.endwin()
-
-FullPMemInfo = FullPMemInfo()
-showscr("rss", "mbytes")
+#
+#
+# FullPMemInfo = FullPMemInfo()
+# showscr("rss", "mbytes")
