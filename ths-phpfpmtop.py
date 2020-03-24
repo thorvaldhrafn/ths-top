@@ -45,6 +45,7 @@ def showscr(srt="rss", t_data="mbytes"):
         curses.cbreak()
         curses.curs_set(False)
         scr_top.keypad(True)
+        ch = scr_top.getch()
         while True:
             FullPMemInfo.clean()
             proc_mem_list = p_data()
@@ -56,7 +57,6 @@ def showscr(srt="rss", t_data="mbytes"):
             for pool in sproc_mem_list:
                 scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                 l_num += 1
-            ch = scr_top.getch()
             if ch == ord('q'):
                 break
             else:
