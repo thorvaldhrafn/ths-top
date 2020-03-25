@@ -32,3 +32,17 @@ class FullPMemInfo(object):
                 self.proc_mem_list[pname] = p_dict
             except KeyError:
                 self.proc_mem_list[pname] = vms_dict
+
+    def p_mem_swap_full(self, pname, p_mem_swap):
+        try:
+            p_mem_swap_old = self.proc_mem_list[pname]['swap']
+            p_mem_swap_new = p_mem_swap_old + p_mem_swap
+            self.proc_mem_list[pname]['swap'] = p_mem_swap_new
+        except KeyError:
+            swap_dict = dict(swap=p_mem_swap)
+            try:
+                p_dict = self.proc_mem_list[pname]
+                p_dict = {**p_dict, **swap_dict}
+                self.proc_mem_list[pname] = p_dict
+            except KeyError:
+                self.proc_mem_list[pname] = swap_dict
