@@ -93,7 +93,7 @@ def p_data():
                 cmd_str = ' '.join(map(str, cmd_lst))
                 if re.match('.*php-fpm: pool .*', cmd_str):
                     pool = cmd_str.split()[-1]
-                    p_mem_data = prinfo.memory_info()
+                    p_mem_data = prinfo.memory_full_info()
                     p_mem_rss = p_mem_data.rss
                     p_mem_vms = p_mem_data.vms
                     p_mem_swap = p_mem_data.swap
