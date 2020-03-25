@@ -106,13 +106,14 @@ def p_data():
 
 
 def main():
-    showscr("rss", "mbytes")
+    print(p_data())
+    # showscr("rss", "mbytes")
 
 
 if __name__ == "__main__":
-    scr_top = curses.initscr()
-    atexit.register(exandclear)
-    curses.endwin()
+    # scr_top = curses.initscr()
+    # atexit.register(exandclear)
+    # curses.endwin()
     FullPMemInfo = FullPMemInfo()
     sys.exit(main())
 #
