@@ -69,6 +69,12 @@ def showscr(srt="rss", t_data="mbytes"):
                 for pool in sproc_mem_list:
                     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                     l_num += 1
+            if srt == "swap":
+                sproc_mem_list = OrderedDict(
+                    sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'swap'), reverse=True))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
             ch = scr_top.getch()
             if ch == ord('n'):
                 srt = "name"
@@ -76,6 +82,8 @@ def showscr(srt="rss", t_data="mbytes"):
                 srt = "rss"
             if ch == ord('v'):
                 srt = "vms"
+            if ch == ord('s'):
+                srt = "swap"
             if ch == ord('q'):
                 break
             else:
