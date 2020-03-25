@@ -11,12 +11,12 @@ from operator import getitem
 from PMemInfo import FullPMemInfo
 
 
-# def exandclear():
-#     scr_top.keypad(False)
-#     curses.curs_set(True)
-#     curses.nocbreak()
-#     curses.echo()
-#     curses.endwin()
+def exandclear():
+    scr_top.keypad(False)
+    curses.curs_set(True)
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
 
 
 def bytes_conv(m_data, t_data):
@@ -106,14 +106,14 @@ def p_data():
 
 
 def main():
-    print(p_data())
-    # showscr("rss", "mbytes")
+    # print(p_data())
+    showscr("rss", "mbytes")
 
 
 if __name__ == "__main__":
-    # scr_top = curses.initscr()
-    # atexit.register(exandclear)
-    # curses.endwin()
+    scr_top = curses.initscr()
+    atexit.register(exandclear)
+    curses.endwin()
     FullPMemInfo = FullPMemInfo()
     sys.exit(main())
 #
