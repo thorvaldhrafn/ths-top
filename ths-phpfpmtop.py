@@ -53,22 +53,22 @@ def showscr(srt="rss", t_data="mbytes"):
             leng_p += 6
             scr_top.addstr(0, 1, str("{:" + str(leng_p) + "}" "{:<15s} {:<10s} {:<10s}").format("Pool name", "VMS", "RSS", "SWAP"), curses.A_REVERSE)
             l_num = 1
-            # if srt == "name":
-            #     sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-            #     for pool in sproc_mem_list:
-            #         scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-            #         l_num += 1
-            # if srt == "rss":
-            #     sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
-            #     for pool in sproc_mem_list:
-            #         scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-            #         l_num += 1
-            # if srt == "vms":
-            #     sproc_mem_list = OrderedDict(
-            #         sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
-            #     for pool in sproc_mem_list:
-            #         scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-            #         l_num += 1
+            if srt == "name":
+                sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
+            if srt == "rss":
+                sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
+            if srt == "vms":
+                sproc_mem_list = OrderedDict(
+                    sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
+                for pool in sproc_mem_list:
+                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                    l_num += 1
             ch = scr_top.getch()
             if ch == ord('n'):
                 srt = "name"
@@ -96,8 +96,10 @@ def p_data():
                     p_mem_data = prinfo.memory_info()
                     p_mem_rss = p_mem_data.rss
                     p_mem_vms = p_mem_data.vms
+                    p_mem_swap = p_mem_data.swap
                     FullPMemInfo.p_mem_rss_full(pool, p_mem_rss)
                     FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
+                    FullPMemInfo.p_mem_swap_full(pool, p_mem_swap)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
     return FullPMemInfo.proc_mem_list
