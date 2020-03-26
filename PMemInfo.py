@@ -46,3 +46,17 @@ class FullPMemInfo(object):
                 self.proc_mem_list[pname] = p_dict
             except KeyError:
                 self.proc_mem_list[pname] = swap_dict
+
+    def p_quant(self, pname):
+        try:
+            p_quant_new = self.proc_mem_list[pname]['quant']
+            p_quant_new += 1
+            self.proc_mem_list[pname]['quant'] = p_quant_new
+        except KeyError:
+            quant_dict = dict(quant=1)
+            try:
+                p_dict = self.proc_mem_list[pname]
+                p_dict = {**p_dict, **quant_dict}
+                self.proc_mem_list[pname] = p_dict
+            except KeyError:
+                self.proc_mem_list[pname] = quant_dict

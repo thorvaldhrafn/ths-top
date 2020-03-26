@@ -114,8 +114,8 @@ def p_data():
 
 
 def main():
-    # print(p_data())
-    showscr("rss", "mbytes")
+    print(p_data())
+    # showscr("rss", "mbytes")
 
 
 if __name__ == "__main__":
@@ -124,9 +124,3 @@ if __name__ == "__main__":
     curses.endwin()
     FullPMemInfo = FullPMemInfo()
     sys.exit(main())
-#
-#
-#
-#
-# FullPMemInfo = FullPMemInfo()
-# showscr("rss", "mbytes")
