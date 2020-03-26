@@ -33,8 +33,9 @@ def bytes_conv(m_data, t_data):
 
 
 def prnt_line(leng_p, pool, proc_mem_list, t_data):
-    tmplt = str("{:" + str(leng_p) + "}" "{:<15s} {:<10s} {:<10s}")
-    p_line = str(tmplt).format(pool, bytes_conv(proc_mem_list[pool]['vms'], t_data), bytes_conv(proc_mem_list[pool]['rss'], t_data), bytes_conv(proc_mem_list[pool]['swap'], t_data))
+    tmplt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
+    p_line = str(tmplt).format(pool, str(proc_mem_list[pool]['quant']), bytes_conv(proc_mem_list[pool]['vms'], t_data),
+                               bytes_conv(proc_mem_list[pool]['rss'], t_data), bytes_conv(proc_mem_list[pool]['swap'], t_data))
     return str(p_line)
 
 
@@ -51,7 +52,7 @@ def showscr(srt="rss", t_data="mbytes"):
             proc_mem_list = p_data()
             leng_p = len(max(proc_mem_list.keys(), key=len))
             leng_p += 6
-            scr_top.addstr(0, 1, str("{:" + str(leng_p) + "}" "{:<15s} {:<10s} {:<10s}").format("Pool name", "VMS", "RSS", "SWAP"), curses.A_REVERSE)
+            scr_top.addstr(0, 1, str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}").format("Pool name", "PNAME", "VMS", "RSS", "SWAP"), curses.A_REVERSE)
             l_num = 1
             if srt == "name":
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
@@ -115,8 +116,8 @@ def p_data():
 
 
 def main():
-    print(p_data())
-    # showscr("rss", "mbytes")
+    # print(p_data())
+    showscr("rss", "mbytes")
 
 
 if __name__ == "__main__":
