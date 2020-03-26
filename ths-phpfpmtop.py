@@ -108,6 +108,7 @@ def p_data():
                     FullPMemInfo.p_mem_rss_full(pool, p_mem_rss)
                     FullPMemInfo.p_mem_vms_full(pool, p_mem_vms)
                     FullPMemInfo.p_mem_swap_full(pool, p_mem_swap)
+                    FullPMemInfo.p_quant(pool)
         except (psutil.NoSuchProcess, psutil.AccessDenied, IndexError):
             pass
     return FullPMemInfo.proc_mem_list
