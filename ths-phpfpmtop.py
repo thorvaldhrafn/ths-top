@@ -58,9 +58,6 @@ def showscr(srt="rss", t_data="mbytes"):
             proc_mem_list = p_data()
             leng_p = len(max(proc_mem_list.keys(), key=len))
             leng_p += 6
-            # templt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
-            # line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
-            # prnt_line("", "", "", "", head_line="yes")
             scr_top.addstr(0, 1, prnt_line(leng_p, "", "", "", head_line="yes"), curses.A_REVERSE)
             l_num = 1
             ch = scr_top.getch()
@@ -85,7 +82,7 @@ def showscr(srt="rss", t_data="mbytes"):
             if ch == ord('q'):
                 break
             else:
-                time.sleep(1)
+                # time.sleep(1)
                 scr_top.refresh()
     except:
         traceback.print_exc()
