@@ -54,7 +54,7 @@ def showscr(srt="rss", t_data="mbytes"):
             leng_p += 6
             templt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
             line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
-            scr_top.addstr(0, 1, templt.format(line_text), curses.A_REVERSE)
+            scr_top.addstr(0, 1, templt.format(*line_text), curses.A_REVERSE)
             l_num = 1
             if srt == "name":
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
