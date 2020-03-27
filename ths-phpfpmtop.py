@@ -62,41 +62,30 @@ def showscr(srt="rss", t_data="mbytes"):
             line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
             scr_top.addstr(0, 1, templt.format(*line_text), curses.A_REVERSE)
             l_num = 1
+            ch = scr_top.getch()
             sproc_mem_list = list()
-            if srt == "name":
+            if srt == "name" or ch == ord('n'):
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-                # for pool in sproc_mem_list:
-                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                #     l_num += 1
-            if srt == "rss":
+            if srt == "rss" or ch == ord('r'):
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
-                # for pool in sproc_mem_list:
-                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                #     l_num += 1
-            if srt == "vms":
+            if srt == "vms" or ch == ord('v'):
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
-                # for pool in sproc_mem_list:
-                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                #     l_num += 1
-            if srt == "swap":
+            if srt == "swap" or ch == ord('s'):
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'swap'), reverse=True))
-                # for pool in sproc_mem_list:
-                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                #     l_num += 1
             for pool in sproc_mem_list:
                 scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                 l_num += 1
-            ch = scr_top.getch()
-            if ch == ord('n'):
-                srt = "name"
-            if ch == ord('r'):
-                srt = "rss"
-            if ch == ord('v'):
-                srt = "vms"
-            if ch == ord('s'):
-                srt = "swap"
+            # ch = scr_top.getch()
+            # if ch == ord('n'):
+            #     srt = "name"
+            # if ch == ord('r'):
+            #     srt = "rss"
+            # if ch == ord('v'):
+            #     srt = "vms"
+            # if ch == ord('s'):
+            #     srt = "swap"
             if ch == ord('q'):
                 break
             else:
