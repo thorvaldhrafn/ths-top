@@ -61,7 +61,7 @@ def showscr(srt="rss", t_data="mbytes"):
             # templt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
             # line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
             # prnt_line("", "", "", "", head_line="yes")
-            scr_top.addstr(0, 1, prnt_line("", "", "", "", head_line="yes"), curses.A_REVERSE)
+            scr_top.addstr(0, 1, prnt_line(leng_p, "", "", "", head_line="yes"), curses.A_REVERSE)
             l_num = 1
             ch = scr_top.getch()
             sproc_mem_list = list()
