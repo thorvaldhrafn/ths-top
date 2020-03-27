@@ -32,10 +32,16 @@ def bytes_conv(m_data, t_data):
     return m_data
 
 
-def prnt_line(leng_p, pool, proc_mem_list, t_data):
+def prnt_line(leng_p, pool, proc_mem_list, t_data, head_line="no"):
     tmplt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
-    p_line = str(tmplt).format(pool, str(proc_mem_list[pool]['quant']), bytes_conv(proc_mem_list[pool]['vms'], t_data),
-                               bytes_conv(proc_mem_list[pool]['rss'], t_data), bytes_conv(proc_mem_list[pool]['swap'], t_data))
+    if head_line == "yes":
+        line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
+        p_line = tmplt.format(*line_text)
+    else:
+        p_line = tmplt.format(pool, str(proc_mem_list[pool]['quant']),
+                                   bytes_conv(proc_mem_list[pool]['vms'], t_data),
+                                   bytes_conv(proc_mem_list[pool]['rss'], t_data),
+                                   bytes_conv(proc_mem_list[pool]['swap'], t_data))
     return str(p_line)
 
 
@@ -56,28 +62,32 @@ def showscr(srt="rss", t_data="mbytes"):
             line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
             scr_top.addstr(0, 1, templt.format(*line_text), curses.A_REVERSE)
             l_num = 1
+            sproc_mem_list = list()
             if srt == "name":
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
-                for pool in sproc_mem_list:
-                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                    l_num += 1
+                # for pool in sproc_mem_list:
+                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                #     l_num += 1
             if srt == "rss":
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
-                for pool in sproc_mem_list:
-                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                    l_num += 1
+                # for pool in sproc_mem_list:
+                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                #     l_num += 1
             if srt == "vms":
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
-                for pool in sproc_mem_list:
-                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                    l_num += 1
+                # for pool in sproc_mem_list:
+                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                #     l_num += 1
             if srt == "swap":
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'swap'), reverse=True))
-                for pool in sproc_mem_list:
-                    scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
-                    l_num += 1
+                # for pool in sproc_mem_list:
+                #     scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                #     l_num += 1
+            for pool in sproc_mem_list:
+                scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
+                l_num += 1
             ch = scr_top.getch()
             if ch == ord('n'):
                 srt = "name"
