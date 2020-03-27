@@ -54,6 +54,7 @@ def showscr(srt="rss", t_data="mbytes"):
         scr_top.keypad(True)
         scr_top.nodelay(True)
         while True:
+            scr_top.clear()
             FullPMemInfo.clean()
             proc_mem_list = p_data()
             leng_p = len(max(proc_mem_list.keys(), key=len))
