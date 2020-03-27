@@ -54,14 +54,14 @@ def showscr(srt="rss", t_data="mbytes"):
         scr_top.keypad(True)
         scr_top.nodelay(True)
         while True:
-            scr_top.clear()
             FullPMemInfo.clean()
             proc_mem_list = p_data()
             leng_p = len(max(proc_mem_list.keys(), key=len))
             leng_p += 6
-            templt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
-            line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
-            scr_top.addstr(0, 1, templt.format(*line_text), curses.A_REVERSE)
+            # templt = str("{:" + str(leng_p) + "}" "{:<10s} {:<15s} {:<10s} {:<10s}")
+            # line_text = ["Pool name", "PQUANT", "VMS", "RSS", "SWAP"]
+            # prnt_line("", "", "", "", head_line="yes")
+            scr_top.addstr(0, 1, prnt_line("", "", "", "", head_line="yes"), curses.A_REVERSE)
             l_num = 1
             ch = scr_top.getch()
             sproc_mem_list = list()
@@ -82,15 +82,6 @@ def showscr(srt="rss", t_data="mbytes"):
             for pool in sproc_mem_list:
                 scr_top.addstr(l_num, 1, prnt_line(leng_p, pool, proc_mem_list, t_data), curses.A_NORMAL)
                 l_num += 1
-            # ch = scr_top.getch()
-            # if ch == ord('n'):
-            #     srt = "name"
-            # if ch == ord('r'):
-            #     srt = "rss"
-            # if ch == ord('v'):
-            #     srt = "vms"
-            # if ch == ord('s'):
-            #     srt = "swap"
             if ch == ord('q'):
                 break
             else:
