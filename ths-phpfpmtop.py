@@ -65,13 +65,17 @@ def showscr(srt="rss", t_data="mbytes"):
             ch = scr_top.getch()
             sproc_mem_list = list()
             if srt == "name" or ch == ord('n'):
+                srt = "name"
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items()))
             if srt == "rss" or ch == ord('r'):
+                srt = "rss"
                 sproc_mem_list = OrderedDict(sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'rss'), reverse=True))
             if srt == "vms" or ch == ord('v'):
+                srt = "vms"
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'vms'), reverse=True))
             if srt == "swap" or ch == ord('s'):
+                srt = "swap"
                 sproc_mem_list = OrderedDict(
                     sorted(proc_mem_list.items(), key=lambda x: getitem(x[1], 'swap'), reverse=True))
             for pool in sproc_mem_list:
